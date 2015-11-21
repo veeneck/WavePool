@@ -17,6 +17,7 @@
 		E74F53941C00F3B70050BA8D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E74F53931C00F3B70050BA8D /* README.md */; };
 		E74F53961C00F3D80050BA8D /* config.yml in Resources */ = {isa = PBXBuildFile; fileRef = E74F53951C00F3D80050BA8D /* config.yml */; };
 		E74F53981C00F7750050BA8D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E74F53971C00F7750050BA8D /* .gitignore */; };
+		E74F539A1C00F83C0050BA8D /* sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = E74F53991C00F83C0050BA8D /* sample.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		E74F53931C00F3B70050BA8D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E74F53951C00F3D80050BA8D /* config.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = config.yml; path = WavePool/config.yml; sourceTree = "<group>"; };
 		E74F53971C00F7750050BA8D /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		E74F53991C00F83C0050BA8D /* sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sample.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				E74F536F1C00EDA00050BA8D /* WavePool.h */,
 				E74F53711C00EDA00050BA8D /* Info.plist */,
 				E74F53971C00F7750050BA8D /* .gitignore */,
+				E74F53991C00F83C0050BA8D /* sample.plist */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E74F539A1C00F83C0050BA8D /* sample.plist in Resources */,
 				E74F53981C00F7750050BA8D /* .gitignore in Resources */,
 				E74F53961C00F3D80050BA8D /* config.yml in Resources */,
 			);

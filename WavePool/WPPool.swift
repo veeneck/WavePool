@@ -13,45 +13,67 @@ import SpriteKit
 */
 public class WPPool {
     
+    /// A coordinate to indicate where a WPSpawn should take place. Loaded once, and then referenced as index.
     public struct SpawnPoint {
         
-        var point : CGPoint = CGPoint(x:0, y:0)
+        /// Point on a map.
+        public var point : CGPoint = CGPoint(x:0, y:0)
         
-        var heading: CGFloat = 0
+        /// Direction to face when spawning at this point.
+        public var heading: CGFloat = 0
+        
+        public init() {
+            
+        }
         
     }
     
     /// All waves for this level
-    var waves : Array<WPWave>
+    private var waves : Array<WPWave>!
     
     /// Index is used to determine where the spawn starts
-    var spawnPoints : Array<SpawnPoint>
+    private var spawnPoints : Array<SpawnPoint>
     
     /// Index in the wave array marking the current wave
-    var currentWave : Int = 0
+    private var currentWave : Int = 0
     
-    let delegate : WPLifeguardProtocol
+    /// Delegate to handle callbacks related to key spawn and wave events
+    private let delegate : WPLifeguardProtocol
     
-    public init(waves:Array<WPWave>, spawnPoints:Array<SpawnPoint>, delegate:WPLifeguardProtocol) {
-        self.waves = waves
+    /// Elapsed time since last wave
+    private var elapsedTime : NSTimeInterval = 0.0
+    
+    private var running : Bool = false
+    
+    // MARK: Initializing a Pool
+    
+    /**
+    Construction for the WPPool.
+     
+    - parameter fileName: The name of the pList file. Must exist or it will hard error.
+    - parameter spawnPoints: An array of spawn points that cooresponds to indexes in the pList
+    - parameter delegate: The class that will handle key event callbacks
+     
+    - warning: Assume the pList exists and is properly constructed.
+    */
+    public init(fileName:String, spawnPoints:Array<SpawnPoint>, delegate:WPLifeguardProtocol) {
         self.spawnPoints = spawnPoints
         self.delegate = delegate
+        self.waves = self.initFromPlist(fileName)
     }
     
-    func beginWaves() {
-        if currentWave < self.waves.count {
-            /*Time.delay(self.waves[self.currentWave].delayTime, closure: { [weak self] in
-                if let this = self {
-                    this.spawnCurrentWave()
-                }
-                })*/
-        }
-        else {
-            // waves finished
-        }
+    // MARK: Managing Waves
+    
+    /**
+    Call this once when you are ready to start the pool.
+    
+    - warning: No saftey check for multiple calls.
+    */
+    public func beginWaves() {
+        self.running = true
     }
     
-    func spawnCurrentWave() {
+    private func spawnCurrentWave() {
         for spawn in self.waves[self.currentWave].spawns {
             self.delegate.handleSpawn(spawn)
         }
@@ -60,13 +82,91 @@ public class WPPool {
         self.beginWaves()
     }
     
-    func isLastWave() -> Bool {
+    /// Lookup to determine when the last wave is reached. This is useful because a delegate callback when the waves are finished isn't enough to determine an event like level completed. Instead, the user would wait until the last enemy dies and then check with the WPPool to make sure no more enemies are coming. This function will assist with that.
+    public func isLastWave() -> Bool {
         if(self.currentWave == self.waves.count) {
             return true
         }
         else {
             return false
         }
+    }
+    
+    // MARK: Update Loop
+    
+    /**
+    Must be called for WPPool to function. Preferably, call every frame within your game loop.
+    
+    - parameter seconds: The delta time so that time elapsed can be tracked.
+    */
+    public func updateWithDeltaTime(seconds: NSTimeInterval) {
+        if self.running {
+            self.elapsedTime += seconds
+            let currentWave = self.waves[self.currentWave]
+            
+            /// Time for a wave if wait time exceeded
+            if currentWave.waitTime <= self.elapsedTime {
+                self.spawnCurrentWave()
+                self.elapsedTime = 0.0
+            }
+        }
+    }
+    
+    // MARK: Factory Constrution
+    
+    /// Load pList and call helper functions
+    private func initFromPlist(name:String) -> [WPWave] {
+        let path = NSBundle.mainBundle().pathForResource(name, ofType: "plist")
+        let pListData = NSDictionary(contentsOfFile:path!)!
+        let waveData = pListData.objectForKey("Waves") as! NSArray
+        return self.createWavesFromNSArray(waveData)
+    }
+    
+    /// Loop trhough each wave in the pList and build it.
+    private func createWavesFromNSArray(data:NSArray) -> [WPWave] {
+        var waves = [WPWave]()
+        
+        for waveData in data {
+            var wave = WPWave()
+            if let delayTime = waveData.objectForKey("DelayTime") as? Double,
+                waitTime = waveData.objectForKey("WaitTime") as? Double,
+                spawns = waveData.objectForKey("spawns") as? Array<NSDictionary> {
+                    wave.delayTime = delayTime
+                    wave.waitTime = waitTime
+                    wave.spawns = self.createSpawnsFromArray(spawns)
+                    waves.append(wave)
+            }
+        }
+        
+        return waves
+    }
+    
+    /// Loop through each spawn in a wave.
+    private func createSpawnsFromArray(data:Array<NSDictionary>) -> [WPSpawn] {
+        var spawns = [WPSpawn]()
+        
+        for spawnData in data {
+            var spawn = WPSpawn()
+            
+            if let enemy = spawnData.objectForKey("Enemy") as? String,
+                amount = spawnData.objectForKey("Amount") as? Int,
+                spacing = spawnData.objectForKey("Spacing") as? Int,
+                columns = spawnData.objectForKey("Columns") as? Int,
+                waitTime = spawnData.objectForKey("WaitTime") as? Double,
+                path = spawnData.objectForKey("Path") as? Int {
+                    spawn.enemy = enemy
+                    spawn.amount = amount
+                    spawn.spacing = spacing
+                    spawn.columns = columns
+                    spawn.waitTime = waitTime
+                    spawn.path = path
+                    
+                    spawns.append(spawn)
+            }
+            
+        }
+        
+        return spawns
     }
     
 }

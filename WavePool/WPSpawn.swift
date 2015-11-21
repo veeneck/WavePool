@@ -25,7 +25,11 @@ public struct WPSpawn {
     /// How many columns make up the formation.
     public var columns : Int = 0
     
-    /// From when the wave starts, how long shoud this spawn wait to process.
+    /**
+    From when the wave starts, how long shoud this spawn should wait to process.
+    
+    - note: It is up to the delegate to handle the delay. WPWavePool will do nothing with it. An example would be showing an indicator that a spawn is about to happen. The spawn will be triggered, and then the delegate will show an indicator. The delegate will then reference this `waitTime` before spawning the unit.
+    */
     public var waitTime : Double = 0
     
     /// Index of WPSpawnPoint to use from current WPWavePool.
