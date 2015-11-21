@@ -10,6 +10,10 @@
 		E74F53701C00EDA00050BA8D /* WavePool.h in Headers */ = {isa = PBXBuildFile; fileRef = E74F536F1C00EDA00050BA8D /* WavePool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E74F53771C00EDA10050BA8D /* WavePool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74F536C1C00EDA00050BA8D /* WavePool.framework */; };
 		E74F537C1C00EDA10050BA8D /* WavePoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F537B1C00EDA10050BA8D /* WavePoolTests.swift */; };
+		E74F53881C00EDF50050BA8D /* WPPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F53871C00EDF50050BA8D /* WPPool.swift */; };
+		E74F538A1C00EDFC0050BA8D /* WPWave.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F53891C00EDFC0050BA8D /* WPWave.swift */; };
+		E74F538C1C00EE0F0050BA8D /* WPSpawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F538B1C00EE0F0050BA8D /* WPSpawn.swift */; };
+		E74F538E1C00EFED0050BA8D /* WPLifeguardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F538D1C00EFED0050BA8D /* WPLifeguardProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,11 +28,15 @@
 
 /* Begin PBXFileReference section */
 		E74F536C1C00EDA00050BA8D /* WavePool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WavePool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E74F536F1C00EDA00050BA8D /* WavePool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WavePool.h; sourceTree = "<group>"; };
-		E74F53711C00EDA00050BA8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E74F536F1C00EDA00050BA8D /* WavePool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WavePool.h; path = WavePool/WavePool.h; sourceTree = "<group>"; };
+		E74F53711C00EDA00050BA8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = WavePool/Info.plist; sourceTree = "<group>"; };
 		E74F53761C00EDA10050BA8D /* WavePoolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WavePoolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E74F537B1C00EDA10050BA8D /* WavePoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavePoolTests.swift; sourceTree = "<group>"; };
 		E74F537D1C00EDA10050BA8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E74F53871C00EDF50050BA8D /* WPPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPPool.swift; sourceTree = "<group>"; };
+		E74F53891C00EDFC0050BA8D /* WPWave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPWave.swift; sourceTree = "<group>"; };
+		E74F538B1C00EE0F0050BA8D /* WPSpawn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPSpawn.swift; sourceTree = "<group>"; };
+		E74F538D1C00EFED0050BA8D /* WPLifeguardProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPLifeguardProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				E74F536E1C00EDA00050BA8D /* WavePool */,
+				E74F53861C00EDAD0050BA8D /* Info */,
 				E74F537A1C00EDA10050BA8D /* WavePoolTests */,
 				E74F536D1C00EDA00050BA8D /* Products */,
 			);
@@ -71,8 +80,10 @@
 		E74F536E1C00EDA00050BA8D /* WavePool */ = {
 			isa = PBXGroup;
 			children = (
-				E74F536F1C00EDA00050BA8D /* WavePool.h */,
-				E74F53711C00EDA00050BA8D /* Info.plist */,
+				E74F53871C00EDF50050BA8D /* WPPool.swift */,
+				E74F53891C00EDFC0050BA8D /* WPWave.swift */,
+				E74F538B1C00EE0F0050BA8D /* WPSpawn.swift */,
+				E74F538D1C00EFED0050BA8D /* WPLifeguardProtocol.swift */,
 			);
 			path = WavePool;
 			sourceTree = "<group>";
@@ -84,6 +95,15 @@
 				E74F537D1C00EDA10050BA8D /* Info.plist */,
 			);
 			path = WavePoolTests;
+			sourceTree = "<group>";
+		};
+		E74F53861C00EDAD0050BA8D /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				E74F536F1C00EDA00050BA8D /* WavePool.h */,
+				E74F53711C00EDA00050BA8D /* Info.plist */,
+			);
+			name = Info;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +214,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E74F538E1C00EFED0050BA8D /* WPLifeguardProtocol.swift in Sources */,
+				E74F53881C00EDF50050BA8D /* WPPool.swift in Sources */,
+				E74F538A1C00EDFC0050BA8D /* WPWave.swift in Sources */,
+				E74F538C1C00EE0F0050BA8D /* WPSpawn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,28 +332,33 @@
 		E74F53811C00EDA10050BA8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = WavePool/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = phalanx.WavePool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		E74F53821C00EDA10050BA8D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = WavePool/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = phalanx.WavePool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
