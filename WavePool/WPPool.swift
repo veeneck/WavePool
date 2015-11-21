@@ -8,6 +8,9 @@
 
 import SpriteKit
 
+/**
+    Class to manage the timing of waves, and calling a WPLifeguardProtocol delegate during key events.
+*/
 public class WPPool {
     
     public struct SpawnPoint {

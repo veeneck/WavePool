@@ -14,6 +14,9 @@
 		E74F538A1C00EDFC0050BA8D /* WPWave.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F53891C00EDFC0050BA8D /* WPWave.swift */; };
 		E74F538C1C00EE0F0050BA8D /* WPSpawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F538B1C00EE0F0050BA8D /* WPSpawn.swift */; };
 		E74F538E1C00EFED0050BA8D /* WPLifeguardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F538D1C00EFED0050BA8D /* WPLifeguardProtocol.swift */; };
+		E74F53941C00F3B70050BA8D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E74F53931C00F3B70050BA8D /* README.md */; };
+		E74F53961C00F3D80050BA8D /* config.yml in Resources */ = {isa = PBXBuildFile; fileRef = E74F53951C00F3D80050BA8D /* config.yml */; };
+		E74F53981C00F7750050BA8D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E74F53971C00F7750050BA8D /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,9 @@
 		E74F53891C00EDFC0050BA8D /* WPWave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPWave.swift; sourceTree = "<group>"; };
 		E74F538B1C00EE0F0050BA8D /* WPSpawn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPSpawn.swift; sourceTree = "<group>"; };
 		E74F538D1C00EFED0050BA8D /* WPLifeguardProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPLifeguardProtocol.swift; sourceTree = "<group>"; };
+		E74F53931C00F3B70050BA8D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E74F53951C00F3D80050BA8D /* config.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = config.yml; path = WavePool/config.yml; sourceTree = "<group>"; };
+		E74F53971C00F7750050BA8D /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +106,11 @@
 		E74F53861C00EDAD0050BA8D /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				E74F53951C00F3D80050BA8D /* config.yml */,
+				E74F53931C00F3B70050BA8D /* README.md */,
 				E74F536F1C00EDA00050BA8D /* WavePool.h */,
 				E74F53711C00EDA00050BA8D /* Info.plist */,
+				E74F53971C00F7750050BA8D /* .gitignore */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -197,6 +206,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E74F53981C00F7750050BA8D /* .gitignore in Resources */,
+				E74F53961C00F3D80050BA8D /* config.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +227,7 @@
 			files = (
 				E74F538E1C00EFED0050BA8D /* WPLifeguardProtocol.swift in Sources */,
 				E74F53881C00EDF50050BA8D /* WPPool.swift in Sources */,
+				E74F53941C00F3B70050BA8D /* README.md in Sources */,
 				E74F538A1C00EDFC0050BA8D /* WPWave.swift in Sources */,
 				E74F538C1C00EE0F0050BA8D /* WPSpawn.swift in Sources */,
 			);

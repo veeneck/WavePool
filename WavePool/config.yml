@@ -1,0 +1,10 @@
+output: /Users/ryancampbell/Documents/Games/veeneck.github.io/WavePool
+readme_path: /Users/ryancampbell/Documents/Games/WavePool/README.md
+author_name: "Ryan Campbell"
+author_url: "http://battleofbrothers.com"
+hide_documentation_coverage: yes
+min_acl: public
+github_url: "https://github.com/veeneck/WavePool"
+root_url: "http://veeneck.github.io/WavePool"
+module_name: WavePool
+skip_undocumented: yes
