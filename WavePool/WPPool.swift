@@ -32,7 +32,7 @@ public class WPPool {
     private var waves : Array<WPWave>!
     
     /// Index is used to determine where the spawn starts
-    private var spawnPoints : Array<SpawnPoint>
+    public var spawnPoints : Array<SpawnPoint>
     
     /// Index in the wave array marking the current wave
     private var currentWave : Int = 0
@@ -73,13 +73,18 @@ public class WPPool {
         self.running = true
     }
     
+    /// This will pause the timer. When resuming, the timer will pick up at the point it was stopped.
+    public func pause() {
+        self.running = false
+    }
+    
+    /// Internal func to trigger the delegate to handle a spawn, and advance the currentSpawn counter.
     private func spawnCurrentWave() {
         for spawn in self.waves[self.currentWave].spawns {
             self.delegate.handleSpawn(spawn)
         }
-        self.currentWave += 1
         self.delegate.waveDidStart(self.waves[self.currentWave])
-        self.beginWaves()
+        self.currentWave += 1
     }
     
     /// Lookup to determine when the last wave is reached. This is useful because a delegate callback when the waves are finished isn't enough to determine an event like level completed. Instead, the user would wait until the last enemy dies and then check with the WPPool to make sure no more enemies are coming. This function will assist with that.
@@ -100,14 +105,14 @@ public class WPPool {
     - parameter seconds: The delta time so that time elapsed can be tracked.
     */
     public func updateWithDeltaTime(seconds: NSTimeInterval) {
-        if self.running {
+        if self.running && self.currentWave < self.waves.count {
             self.elapsedTime += seconds
             let currentWave = self.waves[self.currentWave]
             
             /// Time for a wave if wait time exceeded
-            if currentWave.waitTime <= self.elapsedTime {
-                self.spawnCurrentWave()
+            if currentWave.delayTime <= self.elapsedTime {
                 self.elapsedTime = 0.0
+                self.spawnCurrentWave()
             }
         }
     }
