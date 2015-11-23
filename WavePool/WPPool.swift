@@ -35,7 +35,7 @@ public class WPPool {
     public var spawnPoints : Array<SpawnPoint>
     
     /// Index in the wave array marking the current wave
-    private var currentWave : Int = 0
+    public var currentWave : Int = 0
     
     /// Delegate to handle callbacks related to key spawn and wave events
     private let delegate : WPLifeguardProtocol
@@ -80,11 +80,12 @@ public class WPPool {
     
     /// Internal func to trigger the delegate to handle a spawn, and advance the currentSpawn counter.
     private func spawnCurrentWave() {
-        for spawn in self.waves[self.currentWave].spawns {
+        let wave = self.waves[self.currentWave]
+        for spawn in wave.spawns {
             self.delegate.handleSpawn(spawn)
         }
-        self.delegate.waveDidStart(self.waves[self.currentWave])
         self.currentWave += 1
+        self.delegate.waveDidStart(wave)
     }
     
     /// Lookup to determine when the last wave is reached. This is useful because a delegate callback when the waves are finished isn't enough to determine an event like level completed. Instead, the user would wait until the last enemy dies and then check with the WPPool to make sure no more enemies are coming. This function will assist with that.
@@ -107,12 +108,19 @@ public class WPPool {
     public func updateWithDeltaTime(seconds: NSTimeInterval) {
         if self.running && self.currentWave < self.waves.count {
             self.elapsedTime += seconds
-            let currentWave = self.waves[self.currentWave]
+            let wave = self.waves[self.currentWave]
             
             /// Time for a wave if wait time exceeded
-            if currentWave.delayTime <= self.elapsedTime {
-                self.elapsedTime = 0.0
-                self.spawnCurrentWave()
+            if wave.delayTime <= self.elapsedTime {
+                
+                /// Let the delegate know the next wave is about to begin
+                self.delegate.waveWillStart(wave)
+                
+                /// Check to make sure the delegate did not pause anything in `waveWillStart`
+                if self.running {
+                    self.elapsedTime = 0.0
+                    self.spawnCurrentWave()
+                }
             }
         }
     }
