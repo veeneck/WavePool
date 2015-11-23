@@ -12,17 +12,19 @@ Simple tool to manage waves of spawns (i.e.: TowerDefense) in SpriteKit. Goals a
 
 Example code to set up the pool.
 
-    var spawnA = WPPool.SpawnPoint()
-    spawnA.point = CGPoint(x:1050, y:1100)
-    spawnA.heading = 4.5
+```swift
+var spawnA = WPPool.SpawnPoint()
+spawnA.point = CGPoint(x:1050, y:1100)
+spawnA.heading = 4.5
 
-    var spawnB = WPPool.SpawnPoint()
-    spawnB.point = CGPoint(x:1500, y:460)
-    spawnB.heading = 3
+var spawnB = WPPool.SpawnPoint()
+spawnB.point = CGPoint(x:1500, y:460)
+spawnB.heading = 3
 
 
-    self.wavePool = WPPool(fileName: "Sample", spawnPoints: [spawnA, spawnB], delegate: self)
-    self.wavePool.beginWaves()
+self.wavePool = WPPool(fileName: "Sample", spawnPoints: [spawnA, spawnB], delegate: self)
+self.wavePool.beginWaves()
+```
 
 The `fileName` above refers to the pList config file. See the [sample file](https://github.com/veeneck/WavePool/blob/master/sample.plist) for an example of how to configure the data.
 
