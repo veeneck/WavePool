@@ -11,7 +11,7 @@ import SpriteKit
 /**
 Protocol to handle key events of each wave.
 */
-public protocol WPLifeguardProtocol {
+public protocol WPLifeguardProtocol : class {
     
     /// Just before the wave starts. This is a chance to run logic and pause the WPPool.
     func waveWillStart(wave:WPWave)

@@ -38,7 +38,7 @@ public class WPPool {
     public var currentWave : Int = 0
     
     /// Delegate to handle callbacks related to key spawn and wave events
-    private let delegate : WPLifeguardProtocol
+    private weak var delegate : WPLifeguardProtocol?
     
     /// Elapsed time since last wave
     private var elapsedTime : NSTimeInterval = 0.0
@@ -82,10 +82,10 @@ public class WPPool {
     private func spawnCurrentWave() {
         let wave = self.waves[self.currentWave]
         for spawn in wave.spawns {
-            self.delegate.handleSpawn(spawn)
+            self.delegate?.handleSpawn(spawn)
         }
         self.currentWave += 1
-        self.delegate.waveDidStart(wave)
+        self.delegate?.waveDidStart(wave)
     }
     
     /// Lookup to determine when the last wave is reached. This is useful because a delegate callback when the waves are finished isn't enough to determine an event like level completed. Instead, the user would wait until the last enemy dies and then check with the WPPool to make sure no more enemies are coming. This function will assist with that.
@@ -114,7 +114,7 @@ public class WPPool {
             if wave.delayTime <= self.elapsedTime {
                 
                 /// Let the delegate know the next wave is about to begin
-                self.delegate.waveWillStart(wave)
+                self.delegate?.waveWillStart(wave)
                 
                 /// Check to make sure the delegate did not pause anything in `waveWillStart`
                 if self.running {
