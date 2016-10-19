@@ -7,11 +7,26 @@
 		<key>WavePool.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>24</integer>
+		</dict>
+		<key>WavePoolOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>25</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>E721F0D91D889124006264D0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E721F0E11D889124006264D0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E74F536B1C00EDA00050BA8D</key>
 		<dict>
 			<key>primary</key>

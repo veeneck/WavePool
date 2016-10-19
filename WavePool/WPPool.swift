@@ -11,7 +11,7 @@ import SpriteKit
 /**
     Class to manage the timing of waves, and calling a WPLifeguardProtocol delegate during key events.
 */
-public class WPPool {
+open class WPPool {
     
     /// A coordinate to indicate where a WPSpawn should take place. Loaded once, and then referenced as index.
     public struct SpawnPoint {
@@ -29,21 +29,21 @@ public class WPPool {
     }
     
     /// All waves for this level
-    private var waves : Array<WPWave>!
+    fileprivate var waves : Array<WPWave>!
     
     /// Index is used to determine where the spawn starts
-    public var spawnPoints : Array<SpawnPoint>
+    open var spawnPoints : Array<SpawnPoint>
     
     /// Index in the wave array marking the current wave
-    public var currentWave : Int = 0
+    open var currentWave : Int = 0
     
     /// Delegate to handle callbacks related to key spawn and wave events
-    private weak var delegate : WPLifeguardProtocol?
+    fileprivate weak var delegate : WPLifeguardProtocol?
     
     /// Elapsed time since last wave
-    private var elapsedTime : NSTimeInterval = 0.0
+    fileprivate var elapsedTime : TimeInterval = 0.0
     
-    private var running : Bool = false
+    fileprivate var running : Bool = false
     
     // MARK: Initializing a Pool
     
@@ -69,17 +69,17 @@ public class WPPool {
     
     - warning: No saftey check for multiple calls.
     */
-    public func beginWaves() {
+    open func beginWaves() {
         self.running = true
     }
     
     /// This will pause the timer. When resuming, the timer will pick up at the point it was stopped.
-    public func pause() {
+    open func pause() {
         self.running = false
     }
     
     /// Internal func to trigger the delegate to handle a spawn, and advance the currentSpawn counter.
-    private func spawnCurrentWave() {
+    fileprivate func spawnCurrentWave() {
         let wave = self.waves[self.currentWave]
         for spawn in wave.spawns {
             self.delegate?.handleSpawn(spawn)
@@ -89,7 +89,7 @@ public class WPPool {
     }
     
     /// Lookup to determine when the last wave is reached. This is useful because a delegate callback when the waves are finished isn't enough to determine an event like level completed. Instead, the user would wait until the last enemy dies and then check with the WPPool to make sure no more enemies are coming. This function will assist with that.
-    public func isLastWave() -> Bool {
+    open func isLastWave() -> Bool {
         if(self.currentWave == self.waves.count) {
             return true
         }
@@ -105,7 +105,7 @@ public class WPPool {
     
     - parameter seconds: The delta time so that time elapsed can be tracked.
     */
-    public func updateWithDeltaTime(seconds: NSTimeInterval) {
+    open func updateWithDeltaTime(_ seconds: TimeInterval) {
         if self.running && self.currentWave < self.waves.count {
             self.elapsedTime += seconds
             let wave = self.waves[self.currentWave]
@@ -128,22 +128,22 @@ public class WPPool {
     // MARK: Factory Constrution
     
     /// Load pList and call helper functions
-    private func initFromPlist(name:String) -> [WPWave] {
-        let path = NSBundle.mainBundle().pathForResource(name, ofType: "plist")
+    fileprivate func initFromPlist(_ name:String) -> [WPWave] {
+        let path = Bundle.main.path(forResource: name, ofType: "plist")
         let pListData = NSDictionary(contentsOfFile:path!)!
-        let waveData = pListData.objectForKey("Waves") as! NSArray
+        let waveData = pListData.object(forKey: "Waves") as! NSArray
         return self.createWavesFromNSArray(waveData)
     }
     
     /// Loop trhough each wave in the pList and build it.
-    private func createWavesFromNSArray(data:NSArray) -> [WPWave] {
+    fileprivate func createWavesFromNSArray(_ data:NSArray) -> [WPWave] {
         var waves = [WPWave]()
         
         for waveData in data {
             var wave = WPWave()
-            if let delayTime = waveData.objectForKey("DelayTime") as? Double,
-                waitTime = waveData.objectForKey("WaitTime") as? Double,
-                spawns = waveData.objectForKey("spawns") as? Array<NSDictionary> {
+            if let delayTime = (waveData as AnyObject).object(forKey: "DelayTime") as? Double,
+                let waitTime = (waveData as AnyObject).object(forKey: "WaitTime") as? Double,
+                let spawns = (waveData as AnyObject).object(forKey: "spawns") as? Array<NSDictionary> {
                     wave.delayTime = delayTime
                     wave.waitTime = waitTime
                     wave.spawns = self.createSpawnsFromArray(spawns)
@@ -155,18 +155,18 @@ public class WPPool {
     }
     
     /// Loop through each spawn in a wave.
-    private func createSpawnsFromArray(data:Array<NSDictionary>) -> [WPSpawn] {
+    fileprivate func createSpawnsFromArray(_ data:Array<NSDictionary>) -> [WPSpawn] {
         var spawns = [WPSpawn]()
         
         for spawnData in data {
             var spawn = WPSpawn()
             
-            if let enemy = spawnData.objectForKey("Enemy") as? String,
-                amount = spawnData.objectForKey("Amount") as? Int,
-                spacing = spawnData.objectForKey("Spacing") as? Int,
-                columns = spawnData.objectForKey("Columns") as? Int,
-                waitTime = spawnData.objectForKey("WaitTime") as? Double,
-                path = spawnData.objectForKey("Path") as? Int {
+            if let enemy = spawnData.object(forKey: "Enemy") as? String,
+                let amount = spawnData.object(forKey: "Amount") as? Int,
+                let spacing = spawnData.object(forKey: "Spacing") as? Int,
+                let columns = spawnData.object(forKey: "Columns") as? Int,
+                let waitTime = spawnData.object(forKey: "WaitTime") as? Double,
+                let path = spawnData.object(forKey: "Path") as? Int {
                     spawn.enemy = enemy
                     spawn.amount = amount
                     spawn.spacing = spacing
