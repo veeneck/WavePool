@@ -86,6 +86,10 @@ open class WPPool {
         }
         self.currentWave += 1
         self.delegate?.waveDidStart(wave)
+        
+        if !self.isLastWave() {
+            self.delegate?.waveTimerStarted(self.waves[self.currentWave])
+        }
     }
     
     /// Lookup to determine when the last wave is reached. This is useful because a delegate callback when the waves are finished isn't enough to determine an event like level completed. Instead, the user would wait until the last enemy dies and then check with the WPPool to make sure no more enemies are coming. This function will assist with that.

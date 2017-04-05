@@ -14,10 +14,10 @@ Container representing one wave in the pool. A wave can contain many spawns. The
 public struct WPWave {
     
     /// Figure this out. Currently does nothing.
-    var waitTime : Double = 0
+    public var waitTime : Double = 0
     
     /// How long to wait since the last wave to process.
-    var delayTime : Double = 0
+    public var delayTime : Double = 0
     
     /// WPSpawn associated with this wave.
     var spawns = Array<WPSpawn>()

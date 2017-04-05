@@ -13,6 +13,9 @@ Protocol to handle key events of each wave.
 */
 public protocol WPLifeguardProtocol : class {
     
+    /// Right when a wave is queued up. Allows to show thing slike a timer
+    func waveTimerStarted(_ wave:WPWave)
+    
     /// Just before the wave starts. This is a chance to run logic and pause the WPPool.
     func waveWillStart(_ wave:WPWave)
     
