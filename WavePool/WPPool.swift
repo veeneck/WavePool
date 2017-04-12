@@ -186,4 +186,8 @@ open class WPPool {
         return spawns
     }
     
+    deinit {
+        print("WavePool was removed from memory")
+    }
+    
 }
