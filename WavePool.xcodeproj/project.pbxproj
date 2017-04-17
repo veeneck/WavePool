@@ -21,7 +21,6 @@
 		E74F538A1C00EDFC0050BA8D /* WPWave.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F53891C00EDFC0050BA8D /* WPWave.swift */; };
 		E74F538C1C00EE0F0050BA8D /* WPSpawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F538B1C00EE0F0050BA8D /* WPSpawn.swift */; };
 		E74F538E1C00EFED0050BA8D /* WPLifeguardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F538D1C00EFED0050BA8D /* WPLifeguardProtocol.swift */; };
-		E74F53941C00F3B70050BA8D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E74F53931C00F3B70050BA8D /* README.md */; };
 		E74F53961C00F3D80050BA8D /* config.yml in Resources */ = {isa = PBXBuildFile; fileRef = E74F53951C00F3D80050BA8D /* config.yml */; };
 		E74F53981C00F7750050BA8D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E74F53971C00F7750050BA8D /* .gitignore */; };
 		E74F539A1C00F83C0050BA8D /* sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = E74F53991C00F83C0050BA8D /* sample.plist */; };
@@ -380,7 +379,6 @@
 			files = (
 				E74F538E1C00EFED0050BA8D /* WPLifeguardProtocol.swift in Sources */,
 				E74F53881C00EDF50050BA8D /* WPPool.swift in Sources */,
-				E74F53941C00F3B70050BA8D /* README.md in Sources */,
 				E74F538A1C00EDFC0050BA8D /* WPWave.swift in Sources */,
 				E74F538C1C00EE0F0050BA8D /* WPSpawn.swift in Sources */,
 			);
@@ -527,6 +525,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -577,6 +576,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -608,6 +608,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = WavePool/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -630,6 +631,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = WavePool/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -673,6 +675,7 @@
 				E721F0ED1D889124006264D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E721F0EE1D889124006264D0 /* Build configuration list for PBXNativeTarget "WavePoolOSTests" */ = {
 			isa = XCConfigurationList;
@@ -681,6 +684,7 @@
 				E721F0F01D889124006264D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E74F53661C00EDA00050BA8D /* Build configuration list for PBXProject "WavePool" */ = {
 			isa = XCConfigurationList;
