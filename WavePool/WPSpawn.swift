@@ -25,6 +25,8 @@ public struct WPSpawn {
     /// How many columns make up the formation.
     public var columns : Int = 0
     
+    public var hero : String? = nil
+    
     /**
     From when the wave starts, how long shoud this spawn should wait to process.
     

@@ -177,6 +177,7 @@ open class WPPool {
                     spawn.columns = columns
                     spawn.waitTime = waitTime
                     spawn.path = path
+                    spawn.hero = spawnData.object(forKey: "Hero") as? String
                     
                     spawns.append(spawn)
             }
